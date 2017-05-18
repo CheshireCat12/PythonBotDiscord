@@ -1,12 +1,12 @@
 import asyncio
 import json
 import zlib
-
+import os
 import aiohttp
 
 import interfaceBotStuffle as ibs
 
-TOKEN = "..."
+TOKEN =  os.environ['TOKEN']
 URL = "https://discordapp.com/api"
 HEADERS = {
 	"Authorization": f"Bot {TOKEN}",
@@ -16,6 +16,7 @@ HEADERS = {
 async def api_call(path, method="GET", **kwargs):
 	"""Return the JSON body of a call to Discord REST API."""
 	defaults = {"headers": HEADERS}
+	print(TOKEN)
 	kwargs = dict(defaults, **kwargs)
 	with aiohttp.ClientSession() as session:
 		async with session.request(method, f"{URL}{path}", **kwargs) as response:
@@ -47,12 +48,13 @@ async def start(ws):
 				else:
 					print("?",msg.tp)
 
-				if data["op"] == 10:  # Hello
+				if data["op"] == 10:  # Hell0
 					asyncio.ensure_future(heartbeat(ws, data['d']['heartbeat_interval']))
 					await identify(ws)
 				elif data['op'] == 11:
 					print("< heartbeat ACK")
 				elif data['op'] == 0:
+
 					last_sequence = data['s']
 					if data['t'] == "MESSAGE_CREATE":
 						#print(data)
@@ -63,14 +65,14 @@ async def start(ws):
 
 							if data['d']['content'] == "quit":
 								print("bye bye")
-								print(task)
+								#print(task)
 								await asyncio.wait([task])
 								break
 						else:
-							print("Todo ?", data['t'])
+							pass
+							#print("Todo ?", data['t'])
 					elif data['t'] == "TYPING_START":
 						print("user écrit")
-						print(data)
 						task = asyncio.ensure_future(send_message(data['d']['user_id'],"Je sais que tu es entrain d'écrire"))
 
 
@@ -93,6 +95,7 @@ async def send_message(recipient_id, content, embed = ""):
 async def main():
 	"""Main program."""
 	response = await api_call("/gateway")
+
 	await start(response["url"])
 
 

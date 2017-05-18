@@ -1,4 +1,6 @@
 import stuffleQuest
+import pdb
+import os
 
 def interface(action , user, msg, node = "nodeRoot"):
 	action = action.lower()
@@ -35,6 +37,7 @@ actionArray = {"start" : startGame, "save" : saveGame, "answer" : answerGame}
 tabPlayer = {}
 
 def main():
+	print(os.environ)
 	temp = interface("start", "anthony", "start")
 	print(temp)
 	temp = interface("toto","anthony","answer","node1")
