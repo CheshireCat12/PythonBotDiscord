@@ -1,6 +1,6 @@
 {
-   "nodeRoot" : {"question" : "Hello {0},\nBienvenue dans Stuffle Quest ", "answer" : "42", "nodeNextLive" : "node1", "nodeNextDead" : "node2"},
-   "node1" : {"question" : "q1", "answer" : "r1", "nodeNextLive" : "node2", "nodeNextDead" : "node2"},
+   "nodeRoot" : {"question" : "Hello {0},\nBienvenue dans Stuffle Quest\nRéagissez au message pour choisir l'action à entreprendre \n\n:arrow_forward: Commencer\n\n:play_pause: Reprendre la partie\n\n:sos: Aide", "answer" : "42", "nodeNextLive" : "node1", "nodeNextDead" : "node2"},
+   "node1" : {"question" : "q1", "answer" : "r1", "nodeNextLive" : "node2", "nodeNextDead" : "nodeLose"},
    "node2" : {"question" : "q2", "answer" : "r2", "nodeNextLive" : "nodeWin", "nodeNextDead" : "nodeLose"},
    "nodeLose" : {"question" : "Désolé tu as perdu", "answer" : "r2", "nodeNextLive" : "node1", "nodeNextDead" : "node2"},
    "nodeWin" : {"question" : "Bien jouer tu as gagné", "answer" : "r2", "nodeNextLive" : "node1", "nodeNextDead" : "node2"}

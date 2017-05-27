@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import asyncio
 import json
 import zlib
@@ -16,7 +17,6 @@ HEADERS = {
 async def api_call(path, method="GET", **kwargs):
 	"""Return the JSON body of a call to Discord REST API."""
 	defaults = {"headers": HEADERS}
-	print(TOKEN)
 	kwargs = dict(defaults, **kwargs)
 	with aiohttp.ClientSession() as session:
 		async with session.request(method, f"{URL}{path}", **kwargs) as response:
@@ -46,7 +46,7 @@ async def start(ws):
 				elif msg.tp == aiohttp.WSMsgType.BINARY:
 					data = json.loads(zlib.decompress(msg.data))
 				else:
-					print("?",msg.tp)
+					print("? toto",msg.tp)
 
 				if data["op"] == 10:  # Hell0
 					asyncio.ensure_future(heartbeat(ws, data['d']['heartbeat_interval']))
@@ -54,7 +54,6 @@ async def start(ws):
 				elif data['op'] == 11:
 					print("< heartbeat ACK")
 				elif data['op'] == 0:
-
 					last_sequence = data['s']
 					if data['t'] == "MESSAGE_CREATE":
 						#print(data)
@@ -71,10 +70,10 @@ async def start(ws):
 						else:
 							pass
 							#print("Todo ?", data['t'])
-					elif data['t'] == "TYPING_START":
-						print("user écrit")
-						task = asyncio.ensure_future(send_message(data['d']['user_id'],"Je sais que tu es entrain d'écrire"))
-
+					elif data['t'] == "MESSAGE_REACTION_ADD":
+						#print(data["d"]["emoji"]["name"])
+						ibs.actionInGame(data["d"]["emoji"]["name"])
+						#print(data['d'])
 
 last_sequence = None
 
@@ -95,7 +94,6 @@ async def send_message(recipient_id, content, embed = ""):
 async def main():
 	"""Main program."""
 	response = await api_call("/gateway")
-
 	await start(response["url"])
 
 

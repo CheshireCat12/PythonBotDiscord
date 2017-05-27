@@ -23,7 +23,7 @@ class StuffleQuest:
 		self._dataGame = dataGame
 
 def get_data_from_json(filename):
-	with open(filename) as data_file:
+	with open(filename, encoding="utf-8") as data_file:
 		data = json.load(data_file)
 	return data
 
