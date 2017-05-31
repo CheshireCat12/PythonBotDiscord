@@ -59,7 +59,7 @@ async def start(ws):
 						#print(data)
 						if data['d']['author']['username'] == "kimJongUn" or data['d']['author']['username'] == "Schnaebele":
 							answerUser = data["d"]["content"].split(":")
-							game = ibs.interface(answerUser[0],data['d']['author']['username'],data['d']['content'])
+							game = ibs.interface(answerUser[0],data['d']['author']['username'],data["d"]["content"])
 							task = asyncio.ensure_future(send_message(data['d']['author']['id'],"answer",{"title" : ":moyai: Stuffle Quest :moneybag:", "description" : game}))
 
 							if data['d']['content'] == "quit":
@@ -71,8 +71,11 @@ async def start(ws):
 							pass
 							#print("Todo ?", data['t'])
 					elif data['t'] == "MESSAGE_REACTION_ADD":
+						pass
+						#game = ibs.actionInGame(data["d"]["emoji"]["name"], data['d']['author']['username'])
+						#task = asyncio.ensure_future(send_message(data['d']['author']['id'],"answer",{"title" : ":moyai: Stuffle Quest :moneybag:", "description" : game}))
 						#print(data["d"]["emoji"]["name"])
-						ibs.actionInGame(data["d"]["emoji"]["name"])
+						#ibs.actionInGame(data["d"]["emoji"]["name"])
 						#print(data['d'])
 
 last_sequence = None
