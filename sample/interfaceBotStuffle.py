@@ -1,48 +1,74 @@
 import stuffleQuest
-import pdb
+#import pdb
 import os
+import Command
 
-def interface(action , user, msg, node = "nodeRoot"):
-	action = action.lower()
+def interface(action , user, msg, node = "nodeMenu"):
+	action = action.lower().strip()
 	if action in actionArray:
-		game = getGame(user)
-		actionArray[action](user = user)
-		#game.currentNode = node
-		return createResponse(user ,game)
+		try:
+			actionArray[action](user = user, msg = msg)
+			game = getGame(user)
+			return createResponse(user, game)
+		except KeyError as e:
+			return "Veuillez instancier le jeu avec 'Nouveau jeu' SVP."
 	else:
-		return "sorry bad answer"
+		gameState = stuffleQuest.StuffleQuest()
+		if action == "aide":
+			gameState.currentNode = gameState.dataGame["nodeHelp"]
+
+		return createResponse(user, gameState)
 
 def getGame(user):
-	if not(user in tabPlayer):
-		tabPlayer.setdefault(user, stuffleQuest.StuffleQuest())
 	game = tabPlayer[user]
 	return game
 
 def createResponse(user ,game):
-	return game.currentNode["question"].format(user) + "\n :ok_hand: " + game.currentNode["answer"]
+	return game.currentNode["question"].format(user)
 
-def startGame(**kwargs):
-	pass
+def startGame(user):
+	tabPlayer.setdefault(user, stuffleQuest.StuffleQuest())
+	return tabPlayer(user)
 
 def answerGame(**kwargs):
 	user = kwargs["user"]
-	tabPlayer[user].currentNode = tabPlayer[user].currentNode["nodeNextLive"]
-
+	msg = kwargs["msg"]
+	print("je passe par la")
+	if tabPlayer[user].currentNode["answer"] in msg.lower():
+		tabPlayer[user].currentNode = tabPlayer[user].dataGame[tabPlayer[user].currentNode["nodeNextLive"]]
+	else:
+		tabPlayer[user].currentNode = tabPlayer[user].dataGame[tabPlayer[user].currentNode["nodeNextDead"]]
+	print(tabPlayer[user].currentNode)
 
 def saveGame():
 	pass
 
-actionArray = {"start" : startGame, "save" : saveGame, "answer" : answerGame}
+
+def newGame(**kwargs):
+	user = kwargs["user"]
+	tabPlayer.setdefault(user, stuffleQuest.StuffleQuest())
+	tabPlayer[user].currentNode = tabPlayer[user].dataGame["node1"]
+
+def continueGame():
+	print("continue le game")
+	pass
+
+
+actionArray = {"sauvegarder" : saveGame, "répondre" : answerGame, "commencer" : newGame, "continuer" : continueGame}
 
 tabPlayer = {}
 
+#commande = Command.Command()
+
 def main():
-	print(os.environ)
-	temp = interface("start", "anthony", "start")
-	print(temp)
-	temp = interface("toto","anthony","answer","node1")
-	print(temp)
+	#commande = Command.Command()
+	#commade.do("continueGame")
 	pass
 
 if __name__ == "__main__":
 	main()
+
+	if  "c'est toto la réponse" in "toto":
+		print("marchre")
+	else:
+		print("marche pas")

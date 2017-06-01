@@ -1,6 +1,6 @@
 {
-	"nodeRoot" : {"question" : "Hello {0},\nBienvenue dans Stuffle Quest  voulez-vous jouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeLoose1"},
+	"nodeMenu" : {"question" : "Hello {0},\nBienvenue dans Stuffle Quest\nVoici les actions disponibles \n\n:arrow_forward: Commencer\n\n:play_pause: Reprendre la partie\n\n:sos: Aide"},
+	"nodeHelp" : {"question" : "Jaaaannneee au secours"}
 	"node1" : {"question" : "Il est 21h et Stuffle vas se coucher. Il règle sont vieux réveil mécanique pour être réveillé à 10h afin de se lever assez tôt pour faire ce qu'il a prévu le lendemain. Il s'endort puis son réveil sonne. Combien de temps a-t-il dormi?",
 		"answer" : "1", "nodeNextLive" : "node2", "nodeNextDead" : "node3"},
 	"node2" : {"question" : "Il se réveil un peu débousolé et fatigué malgré avoir dormi. Il se demande quel jours nous somme. donc onest pas le lendemain de lundi ou de jeudi. Demain n'est pas dimanche et que hier non plus. Après demain n'est pas non plus samedi et avant hier n'est pas mercredi. Quel jour somme nous?",
