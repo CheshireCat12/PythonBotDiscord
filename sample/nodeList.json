@@ -27,15 +27,15 @@
 		"answer" : "rempli le pot de 5 dl et", "nodeNextLive" : "nodeWin1", "nodeNextDead" : "nodeWin2"},
 	"nodeLoose1" : {"question" : "Vous êtes mort !\nrejouer ?", "answer" : "oui", "nodeNextLive" : "nodeRoot", "nodeNextDead" : "nodeLoose1"}, 
 	"nodeLoose2" : {"question" : "Le père fourras commence le petit déjeuné comme d'habitude par une charrade et Stuffle étant de très mauvasie humeur, devient fou et le tue avec le couteau à pain avant même qu'il puisse finir sa charrade.\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeLoose2"},
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeLoose2"},
 	"nodeLoose3" : {"question" : "En prenant le petit déjeuné Stuffle se lève pour couper le pain et glisse sur de la nutella et se tue avec le couteau.\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeLoose3"},
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeLoose3"},
 	"nodeWin1" : {"question" : "Le filre d'amour est à la perfection et brigitte tombe litérallement sous le charme de Stuffle et ils vécurent heureux et eurent beaucoups d'enfants !\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeWin1"}, 
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeWin1"}, 
 	"nodeWin2" : {"question" : "Le filtre d'amour est à la perfection mais Stuffle prit d'une envie préssante le laissa sur la table de la cuisine. Quant-il revient il trouve le verre vide et tombe nez à nez avec sa grand-mère. FML.\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeWin2"},
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeWin2"},
 	"nodeWin3" : {"question" : "Stuffle prépare une bonne tartine de nutella avec son café. Un peu maladroit il la fait tomber. Heuresement elle attérit du bon côté.\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeWin3"}, 
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeWin3"}, 
 	"nodeWin4" : {"question" : "Stuffle prépare une bonne tartine de nutella avec son café. Un peu maladroit il la fait tomber. Malheuresement elle attérit du mauvais côté.\nrejouer?",
-		"answer" : "oui", "nodeNextLive" : "node1", "nodeNextDead" : "nodeWin4"}
+		"answer" : "oui", "nodeNextLive" : "nodeMenu", "nodeNextDead" : "nodeWin4"}
 }
