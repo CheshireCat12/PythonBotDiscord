@@ -7,8 +7,7 @@ import aiohttp
 
 import interfaceBotStuffle as ibs
 
-#TOKEN = os.environ['TOKEN']
-TOKEN = "MzA5NjA2OTcxMTYwNTI2ODQ4.DBXdcw.YIFvU-YHOnqMkIQBMnflfDrgiGI"
+TOKEN = os.environ['TOKEN']
 URL = "https://discordapp.com/api"
 HEADERS = {
     "Authorization": f"Bot {TOKEN}",
