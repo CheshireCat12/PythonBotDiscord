@@ -14,7 +14,7 @@ def interface(action, user, msg):
     else:
         gameState = stuffleQuest.StuffleQuest()
         if action == "aide":
-            gameState.currentNode = gameState.dataGame["nodeHelp"]
+            gameState.setCurrentNode("nodeHelp")
         return createResponse(user, gameState)
 
 
@@ -76,17 +76,3 @@ actionArray = {
 }
 
 tabPlayer = {}
-
-
-def main():
-    continueGame(user="totosdfs")
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-    if "c'est toto la réponse" in "toto":
-        print("marchre")
-    else:
-        print("marche pas")

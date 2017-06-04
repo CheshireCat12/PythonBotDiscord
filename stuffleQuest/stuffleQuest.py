@@ -22,15 +22,3 @@ def get_data_from_json(filename):
     with open(filename, encoding="utf-8") as data_file:
         data = json.load(data_file)
     return data
-
-
-if __name__ == "__main__":
-    print("toto")
-    game = StuffleQuest()
-    print(game.dataGame)
-    print(game.currentNode["question"])
-    game.setCurrentNode("node1")
-    lKey = [key for key, value in game.dataGame.items() if value == game.currentNode][0]
-    print(lKey)
-    #game.currentNode = game.dataGame["node1"]
-    print(game.currentNode)
