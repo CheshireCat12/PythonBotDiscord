@@ -57,7 +57,8 @@ async def start(ws):
                 elif data['op'] == 0:
                     last_sequence = data['s']
                     if data['t'] == "MESSAGE_CREATE":
-                        if data['d']['author']['username'] in ("kimJongUn", "Schnaebele"):
+                        temp = await api_call(f"/channels/{data['d']['channel_id']}")
+                        if temp['is_private']:
                             answerUser = data["d"]["content"].split(":")
                             game = ibs.interface(answerUser[0], data['d']['author']['username'], data["d"]["content"])
                             task = asyncio.ensure_future(send_message(data['d']['author']['id'],
