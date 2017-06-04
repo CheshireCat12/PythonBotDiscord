@@ -14,7 +14,6 @@ HEADERS = {
     "User-Agent": "DiscordBot (http://he-arc.ch/, 0.1)"
 }
 
-
 async def api_call(path, method="GET", **kwargs):
     """Return the JSON body of a call to Discord REST API."""
     defaults = {"headers": HEADERS}
@@ -59,19 +58,17 @@ async def start(ws):
                 elif data['op'] == 0:
                     last_sequence = data['s']
                     if data['t'] == "MESSAGE_CREATE":
-                        #print(data['d'])
-                        #print(data['t'])
-                        #print(data['op'])
-                        #print(data)
                         print("============")
                         if data['d']['author']['username'] in ("kimJongUn", "Schnaebele"):
                             answerUser = data["d"]["content"].split(":")
-                            game = ibs.interface(answerUser[0],data['d']['author']['username'],data["d"]["content"])
-                            task = asyncio.ensure_future(send_message(data['d']['author']['id'],"answer",{"title" : ":moyai: Stuffle Quest :moneybag:", "description" : game}))
-
+                            game = ibs.interface(answerUser[0], data['d']['author']['username'], data["d"]["content"])
+                            task = asyncio.ensure_future(send_message(data['d']['author']['id'],
+                                                                      "answer",
+                                                                      {
+                                                                       "title": ":moyai: Stuffle Quest :moneybag:",
+                                                                       "description": game}))
                             if data['d']['content'] == "quit":
                                 print("bye bye")
-                                #print(task)
                                 await asyncio.wait([task])
                                 break
                         else:
@@ -92,10 +89,14 @@ async def heartbeat(ws, interval):
 
 async def send_message(recipient_id, content, embed=""):
     """Send a message with contenet to the recipient_id"""
-    channel = await api_call("/users/@me/channels", "POST", json={"recipient_id": recipient_id})
+    channel = await api_call("/users/@me/channels",
+                             "POST",
+                             json={"recipient_id": recipient_id})
     print(channel)
     if(channel['is_private']):
-        return await api_call(f"/channels/{channel['id']}/messages", "POST", json={"content": "", "embed": embed})
+        return await api_call(f"/channels/{channel['id']}/messages",
+                              "POST",
+                              json={"content": "", "embed": embed})
 
 
 async def main():

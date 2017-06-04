@@ -14,11 +14,8 @@ class StuffleQuest:
     def dataGame(self):
         return self.dataGame
 
-    def currentNode(self, currentNode):
+    def setCurrentNode(self, currentNode):
         self.currentNode = self.dataGame[currentNode]
-
-    def dataGame(self, dataGame):
-        self.dataGame = dataGame
 
 
 def get_data_from_json(filename):
@@ -32,5 +29,8 @@ if __name__ == "__main__":
     game = StuffleQuest()
     print(game.dataGame)
     print(game.currentNode["question"])
-    game.currentNode = game.dataGame["node1"]
+    game.setCurrentNode("node1")
+    lKey = [key for key, value in game.dataGame.items() if value == game.currentNode][0]
+    print(lKey)
+    #game.currentNode = game.dataGame["node1"]
     print(game.currentNode)
