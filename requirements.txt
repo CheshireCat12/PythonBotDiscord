@@ -1,5 +1,2 @@
 asyncio
-json
-zlib
-os
 aiohttp

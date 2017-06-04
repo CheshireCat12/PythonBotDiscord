@@ -10,7 +10,7 @@ def interface(action, user, msg):
             game = getGame(user)
             return createResponse(user, game)
         except KeyError as e:
-            return "Veuillez commencer le jeu avec 'Nouveau jeu' SVP."
+            return "Veuillez commencer le jeu avec 'Commencer' SVP."
     else:
         gameState = stuffleQuest.StuffleQuest()
         if action == "aide":

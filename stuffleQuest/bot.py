@@ -49,7 +49,6 @@ async def start(ws):
                     data = json.loads(zlib.decompress(msg.data))
                 else:
                     print("? toto", msg.tp)
-
                 if data["op"] == 10:  # Hell0
                     asyncio.ensure_future(heartbeat(ws, data['d']['heartbeat_interval']))
                     await identify(ws)
@@ -58,14 +57,12 @@ async def start(ws):
                 elif data['op'] == 0:
                     last_sequence = data['s']
                     if data['t'] == "MESSAGE_CREATE":
-                        print("============")
                         if data['d']['author']['username'] in ("kimJongUn", "Schnaebele"):
                             answerUser = data["d"]["content"].split(":")
                             game = ibs.interface(answerUser[0], data['d']['author']['username'], data["d"]["content"])
                             task = asyncio.ensure_future(send_message(data['d']['author']['id'],
                                                                       "answer",
-                                                                      {
-                                                                       "title": ":moyai: Stuffle Quest :moneybag:",
+                                                                      {"title": ":moyai: Stuffle Quest :moneybag:",
                                                                        "description": game}))
                             if data['d']['content'] == "quit":
                                 print("bye bye")
@@ -92,7 +89,6 @@ async def send_message(recipient_id, content, embed=""):
     channel = await api_call("/users/@me/channels",
                              "POST",
                              json={"recipient_id": recipient_id})
-    print(channel)
     if(channel['is_private']):
         return await api_call(f"/channels/{channel['id']}/messages",
                               "POST",
